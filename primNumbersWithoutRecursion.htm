@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>js </title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+<div id="ausgabe">Öffne die Konsole mit strg+shift+K</div>
+<script>
+    "use strict";
+    const getPrimeNumbers1 = (howMany) => {
+      //without recursion
+      let primeNumbers=[2];
+      let candidate=3;
+      while (howMany!==primeNumbers.length){
+        //find last possible
+        for (let i =0; i<candidate/2+1; i++){
+          //we prove if candidate is once divisible through
+          // some element of primeNumbers
+          // if it is so, then the candidate isnt a prime
+          if(candidate%primeNumbers[i]===0){candidate++;
+          i=0}
+        }
+        primeNumbers.push(candidate);
+        candidate++;
+      } return primeNumbers;
+
+    }
+
+    const getPrimeNumbers = (howMany, primeNumbers=[2], candidate=3)=>{
+      //with recursion
+      if (howMany==primeNumbers.length) return primeNumbers;
+      if(primeNumbers.some(a=>candidate%a===0)){
+        return getPrimeNumbers(howMany,primeNumbers, candidate+1)
+      } else {
+        primeNumbers.push(candidate);
+        //console.log(primeNumbers);
+      }
+      //hier wird der Array mit einer neu gefundenen Primzahl ausgegeben
+      return getPrimeNumbers(howMany, primeNumbers, candidate+1)
+    }
+
+    const getPrimeNumbers0 = (howMany)=>{
+      //without recursion
+      let primeNumbers=[2];
+      let candidate=3;
+
+      while (howMany!==primeNumbers.length) {
+        if(primeNumbers.every(a=>candidate%a!==0)){
+          primeNumbers.push(candidate);
+          if (primeNumbers.length%1000===0) console.log(primeNumbers);
+
+        }
+          candidate+=2;
+    }
+      //hier wird der Array mit einer neu gefundenen Primzahl ausgegeben
+      return primeNumbers;
+    }
+
+    //we
+
+
+
+console.log(getPrimeNumbers0(1000000));//17389
+//999: 7919
+
+
+// es funktioniert!!!
+
+</script>
+</body>
+
+</html>
