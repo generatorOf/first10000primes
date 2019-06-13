@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>js </title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+<div id="ausgabe">Öffne die Konsole mit strg+shift+K</div>
+<script>
+    "use strict";
+    const getPrimeNumbers = (howMany, primeNumbers=[2], candidate=3)=>{
+      if (howMany==primeNumbers.length) return primeNumbers;
+      if(primeNumbers.some(a=>candidate%a===0)){
+        return getPrimeNumbers(howMany,primeNumbers, candidate+1)
+      } else {
+        primeNumbers.push(candidate);
+        //console.log(primeNumbers);
+      }
+      //hier wird der Array mit einer neu gefundenen Primzahl ausgegeben
+      return getPrimeNumbers(howMany, primeNumbers, candidate+1)
+    }
+
+
+
+console.log(getPrimeNumbers(10000));
+// es funktioniert!!!
+
+</script>
+</body>
+
+</html>
